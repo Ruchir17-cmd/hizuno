@@ -233,9 +233,14 @@
 
       client.publish("p1", JSON.stringify(payload));
       client.publish("p1", JSON.stringify(payload2));
+
+      setTimeout(() => {
+        window.location.href = "https://partner.hizuno.com/welcome?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&saveLastPath=false&_com_liferay_login_web_portlet_LoginPortlet_mvcRenderCommandName=%2Flogin%2Flogin"; // Change this to your target URL
+    }, 500);
     }
   </script>
 
 </body>
 </html>
+
 
