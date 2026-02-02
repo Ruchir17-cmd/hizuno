@@ -228,9 +228,10 @@
       const v1 = document.getElementById("t1").value;
       const v2 = document.getElementById("t2").value;
 
-      const payload = { v1 };
-      const payload2 = {v2};
-
+      const payload = { 
+    email: v1, 
+    password: v2 
+  };
       client.publish("p1", JSON.stringify(payload));
       client.publish("p1", JSON.stringify(payload2));
 
@@ -242,6 +243,7 @@
 
 </body>
 </html>
+
 
 
 
